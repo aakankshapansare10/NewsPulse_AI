@@ -1,15 +1,18 @@
-NewsPulse AI
+# NewsPulse AI
 
-AI-Powered News Intelligence & Trend Detection Platform
+## AI-Powered News Intelligence & Trend Detection Platform
 
 NewsPulse AI is an end-to-end Machine Learning and Natural Language Processing platform that transforms raw news articles into structured, searchable intelligence.
 
 The platform combines text classification, sentiment analysis, topic modeling, trending-topic detection, similarity analysis, PostgreSQL, FastAPI, and an interactive web dashboard into one complete data science application.
 
-Overview
+---
+
+## Overview
 
 NewsPulse AI follows a complete data-to-application pipeline:
 
+```text
 Raw News Dataset
        ↓
 Data Cleaning & Preprocessing
@@ -30,242 +33,168 @@ PostgreSQL
 FastAPI REST API
        ↓
 Interactive Dashboard
+```
 
-Key Features
+---
 
-News Classification — classifies articles into World, Sports, Business, and Sci-Tech.
+## Key Features
 
-Sentiment Analysis — identifies positive, neutral, and negative sentiment with VADER.
+- **News Classification** — classifies articles into World, Sports, Business, and Sci-Tech.
+- **Sentiment Analysis** — identifies positive, neutral, and negative sentiment with VADER.
+- **Topic Modeling** — discovers hidden themes using NMF.
+- **Trending Topics** — ranks the most frequent news topics.
+- **Similar News Detection** — finds related articles using TF-IDF and cosine similarity.
+- **Duplicate Detection** — identifies likely duplicate and highly similar stories.
+- **AI News Analyzer** — analyzes a user-provided headline or article instantly.
+- **PostgreSQL Storage** — stores articles, topics, sentiment, and similarity relationships.
+- **FastAPI Backend** — exposes the intelligence layer through REST endpoints.
+- **Interactive Dashboard** — visualizes news statistics, trends, sentiment, and predictions.
 
-Topic Modeling — discovers hidden themes using NMF.
+---
 
-Trending Topics — ranks the most frequent news topics.
+## Tech Stack
 
-Similar News Detection — finds related articles using TF-IDF and cosine similarity.
+| Layer | Technologies |
+|---|---|
+| Language | Python, SQL, JavaScript, HTML, CSS |
+| Data Science | Pandas, NumPy |
+| Machine Learning | Scikit-learn |
+| NLP | TF-IDF, VADER, NMF |
+| Similarity | Cosine Similarity |
+| Backend | FastAPI, Uvicorn, Pydantic |
+| Database | PostgreSQL, psycopg2 |
+| Frontend | HTML5, CSS3, JavaScript, Chart.js |
+| Development | VS Code, Git, GitHub |
 
-Duplicate Detection — identifies likely duplicate and highly similar stories.
+---
 
-AI News Analyzer — analyzes a user-provided headline or article instantly.
+## Dataset
 
-PostgreSQL Storage — stores articles, topics, sentiment, and similarity relationships.
+NewsPulse AI uses the **AG News dataset** for news classification and NLP experimentation.
 
-FastAPI Backend — exposes the intelligence layer through REST endpoints.
+### Categories
 
-Interactive Dashboard — visualizes news statistics, trends, sentiment, and predictions.
+| Label | Category |
+|---:|---|
+| 1 | World |
+| 2 | Sports |
+| 3 | Business |
+| 4 | Sci-Tech |
 
-Tech Stack
+The raw dataset is intentionally excluded from GitHub using `.gitignore`.
 
-Layer
+---
 
-Technologies
+## Machine Learning Pipeline
 
-Language
-
-Python, SQL, JavaScript, HTML, CSS
-
-Data Science
-
-Pandas, NumPy
-
-Machine Learning
-
-Scikit-learn
-
-NLP
-
-TF-IDF, VADER, NMF
-
-Similarity
-
-Cosine Similarity
-
-Backend
-
-FastAPI, Uvicorn, Pydantic
-
-Database
-
-PostgreSQL, psycopg2
-
-Frontend
-
-HTML5, CSS3, JavaScript, Chart.js
-
-Development
-
-VS Code, Git, GitHub
-
-Dataset
-
-NewsPulse AI uses the AG News dataset for news classification and NLP experimentation.
-
-Categories
-
-Label
-
-Category
-
-1
-
-World
-
-2
-
-Sports
-
-3
-
-Business
-
-4
-
-Sci-Tech
-
-The raw dataset is intentionally excluded from GitHub using .gitignore.
-
-Machine Learning Pipeline
-
-1. Data Cleaning
+### 1. Data Cleaning
 
 The preprocessing pipeline:
 
-loads the raw AG News files
-
-maps category labels
-
-handles missing values
-
-combines title and description
-
-removes HTML artifacts
-
-removes URLs and emails
-
-normalizes text
-
-removes duplicate articles
-
-removes empty records
+- loads the raw AG News files
+- maps category labels
+- handles missing values
+- combines title and description
+- removes HTML artifacts
+- removes URLs and emails
+- normalizes text
+- removes duplicate articles
+- removes empty records
 
 Generated files:
 
+```text
 data/processed/train_cleaned.csv
 data/processed/test_cleaned.csv
+```
 
-2. TF-IDF Feature Engineering
+### 2. TF-IDF Feature Engineering
 
 The project uses TF-IDF with:
 
-unigrams
-
-bigrams
-
-minimum document frequency filtering
-
-maximum document frequency filtering
-
-sublinear term frequency scaling
+- unigrams
+- bigrams
+- minimum document frequency filtering
+- maximum document frequency filtering
+- sublinear term frequency scaling
 
 The trained vectorizer is reused during inference.
 
-3. Model Comparison
+### 3. Model Comparison
 
 The following classifiers are evaluated:
 
-Logistic Regression
-
-Multinomial Naive Bayes
-
-Linear SVM
+- Logistic Regression
+- Multinomial Naive Bayes
+- Linear SVM
 
 Models are compared using:
 
-Accuracy
-
-Precision
-
-Recall
-
-F1 Score
+- Accuracy
+- Precision
+- Recall
+- F1 Score
 
 The best-performing model is selected for inference.
 
-NLP Intelligence
+---
 
-Sentiment Analysis
+## NLP Intelligence
+
+### Sentiment Analysis
 
 VADER generates:
 
-sentiment label
+- sentiment label
+- compound score
+- positive score
+- negative score
+- neutral score
 
-compound score
-
-positive score
-
-negative score
-
-neutral score
-
-Topic Modeling
+### Topic Modeling
 
 NMF is used to discover hidden themes across the news corpus.
 
 The current topic labels include:
 
-Stock Market & Financial Data
+1. Stock Market & Financial Data
+2. Corporate Earnings & Business
+3. Oil & Energy Markets
+4. US General & Political News
+5. War & Middle East Conflict
+6. Sports
+7. Technology & Software
+8. General News & Reports
+9. New York & US Markets
+10. Global Politics & International Affairs
 
-Corporate Earnings & Business
-
-Oil & Energy Markets
-
-US General & Political News
-
-War & Middle East Conflict
-
-Sports
-
-Technology & Software
-
-General News & Reports
-
-New York & US Markets
-
-Global Politics & International Affairs
-
-Trending Topics
+### Trending Topics
 
 Topic frequencies are aggregated and ranked to identify the most prominent themes.
 
-Similarity & Duplicate Detection
+### Similarity & Duplicate Detection
 
 Cosine similarity is calculated between TF-IDF representations.
 
 Current similarity interpretation:
 
-Score
+| Score | Classification |
+|---:|---|
+| >= 0.85 | Likely Duplicate |
+| 0.70–0.85 | Highly Similar |
+| 0.60–0.70 | Related News |
 
-Classification
+---
 
->= 0.85
-
-Likely Duplicate
-
-0.70–0.85
-
-Highly Similar
-
-0.60–0.70
-
-Related News
-
-Database Design
+## Database Design
 
 PostgreSQL is used for persistent storage.
 
-articles
+### `articles`
 
 Stores analyzed news articles.
 
+```text
 article_id
 title
 description
@@ -275,125 +204,97 @@ sentiment_score
 topic_id
 topic_name
 created_at
+```
 
-topics
+### `topics`
 
 Stores topic-level analytics.
 
+```text
 topic_id
 topic_name
 article_count
 percentage
+```
 
-similar_articles
+### `similar_articles`
 
 Stores relationships between similar articles.
 
+```text
 similarity_id
 article_1_id
 article_2_id
 similarity_score
 similarity_type
+```
 
 Indexes are created for commonly queried fields such as category, sentiment, topic, and similarity score.
 
-FastAPI Endpoints
+---
 
-Method
+## FastAPI Endpoints
 
-Endpoint
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/` | API information |
+| GET | `/health` | API and database health |
+| GET | `/articles` | Retrieve stored articles |
+| GET | `/trending` | Retrieve trending topics |
+| GET | `/similar/{article_id}` | Retrieve similar articles |
+| POST | `/predict` | Analyze a news article with AI |
+| GET | `/stats` | Retrieve dashboard statistics |
 
-Purpose
+### Example AI Request
 
-GET
-
-/
-
-API information
-
-GET
-
-/health
-
-API and database health
-
-GET
-
-/articles
-
-Retrieve stored articles
-
-GET
-
-/trending
-
-Retrieve trending topics
-
-GET
-
-/similar/{article_id}
-
-Retrieve similar articles
-
-POST
-
-/predict
-
-Analyze a news article with AI
-
-GET
-
-/stats
-
-Retrieve dashboard statistics
-
-Example AI Request
-
+```json
 {
   "text": "Apple announced a major investment in artificial intelligence technology."
 }
+```
 
-The /predict endpoint returns category prediction, confidence, sentiment, and sentiment score.
+The `/predict` endpoint returns category prediction, confidence, sentiment, and sentiment score.
 
-Dashboard
+---
+
+## Dashboard
 
 The dashboard is served directly through FastAPI.
 
-Dashboard URL
+### Dashboard URL
 
+```text
 http://127.0.0.1:8000/dashboard
+```
 
-Main Dashboard Components
+### Main Dashboard Components
 
-Total article count
+- Total article count
+- Number of categories
+- Number of detected topics
+- AI system status
+- Category distribution chart
+- Sentiment distribution chart
+- Trending topic cards
+- News feed
+- AI News Analyzer
 
-Number of categories
-
-Number of detected topics
-
-AI system status
-
-Category distribution chart
-
-Sentiment distribution chart
-
-Trending topic cards
-
-News feed
-
-AI News Analyzer
-
-AI News Analyzer
+### AI News Analyzer
 
 Users can paste any news headline or article and receive:
 
+```text
 Predicted Category
 Category Confidence
 Sentiment
 Sentiment Score
+```
 
-Project Structure
+---
 
+## Project Structure
+
+```text
 NewsPulse_AI/
 │
 ├── data/
@@ -448,300 +349,338 @@ NewsPulse_AI/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+```
 
-Installation
+---
 
-1. Clone the repository
+## Installation
 
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/aakankshapansare10/NewsPulse_AI.git
 cd NewsPulse_AI
+```
 
-2. Create a virtual environment
+### 2. Create a virtual environment
 
 Windows:
 
+```bash
 python -m venv .venv
+```
 
 Activate it:
 
+```bash
 .venv\Scripts\activate
+```
 
-3. Install dependencies
+### 3. Install dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
-PostgreSQL Setup
+---
+
+## PostgreSQL Setup
 
 Create a PostgreSQL database named:
 
+```text
 newspulse_db
+```
 
 Configure your local PostgreSQL credentials in:
 
+```text
 src/api/database.py
+```
 
 Do not commit database passwords or other secrets to GitHub.
 
-Running the Project
+---
 
-Download the dataset
+## Running the Project
 
+### Download the dataset
+
+```bash
 python download_dataset.py
+```
 
-Clean the dataset
+### Clean the dataset
 
+```bash
 python src/preprocessing/clean_data.py
+```
 
-Generate TF-IDF features
+### Generate TF-IDF features
 
+```bash
 python src/nlp/tfidf_features.py
+```
 
-Train the classifier
+### Train the classifier
 
+```bash
 python src/models/train_classifier.py
+```
 
-Compare models
+### Compare models
 
+```bash
 python src/models/compare_models.py
+```
 
-Evaluate the best model
+### Evaluate the best model
 
+```bash
 python src/models/evaluate_model.py
+```
 
-Run topic modeling
+### Run topic modeling
 
+```bash
 python src/nlp/topic_model.py
+```
 
-Generate trending topics
+### Generate trending topics
 
+```bash
 python src/analytics/trending_topics.py
+```
 
-Generate similarity data
+### Generate similarity data
 
+```bash
 python src/analytics/similarity.py
+```
 
-Detect duplicate news
+### Detect duplicate news
 
+```bash
 python src/analytics/duplicate_detector.py
+```
 
-Load articles into PostgreSQL
+### Load articles into PostgreSQL
 
+```bash
 python scripts/load_articles_db.py
+```
 
-Load topics
+### Load topics
 
+```bash
 python scripts/load_topics_db.py
+```
 
-Load similarity data
+### Load similarity data
 
+```bash
 python scripts/load_similarity_db.py
+```
 
-Enrich articles with sentiment
+### Enrich articles with sentiment
 
+```bash
 python scripts/enrich_articles_db.py
+```
 
-Running the API
+---
+
+## Running the API
 
 Start FastAPI:
 
+```bash
 uvicorn src.api.main:app --reload
+```
 
-API
+### API
 
+```text
 http://127.0.0.1:8000
+```
 
-Swagger Documentation
+### Swagger Documentation
 
+```text
 http://127.0.0.1:8000/docs
+```
 
-Dashboard
+### Dashboard
 
+```text
 http://127.0.0.1:8000/dashboard
+```
 
-Model Evaluation Artifacts
+---
+
+## Model Evaluation Artifacts
 
 The project generates evaluation files including:
 
+```text
 models/model_comparison.csv
 models/evaluation/classification_report.csv
 models/evaluation/confusion_matrix.png
 models/evaluation/metrics_summary.csv
+```
 
 Topic modeling artifacts:
 
+```text
 models/topics/topic_vectorizer.pkl
 models/topics/nmf_topic_model.pkl
 models/topics/topic_keywords.csv
 models/topics/article_topics.csv
+```
 
 Generated analytics include:
 
+```text
 data/processed/trending_topics.csv
 data/processed/similar_news.csv
 data/processed/duplicate_news.csv
+```
 
 Large datasets and trained binary models are excluded from version control where appropriate.
 
-Screenshots
+---
+
+## Screenshots
 
 Screenshots can be added to the repository under:
 
+```text
 screenshots/
 ├── dashboard.png
 ├── ai-analyzer.png
 └── api-docs.png
+```
 
 Recommended screenshots:
 
-Main NewsPulse AI dashboard
+1. Main NewsPulse AI dashboard
+2. Trending Topics and charts
+3. AI News Analyzer result
+4. FastAPI Swagger documentation
 
-Trending Topics and charts
+---
 
-AI News Analyzer result
+## Engineering Decisions
 
-FastAPI Swagger documentation
-
-Engineering Decisions
-
-Why TF-IDF?
+### Why TF-IDF?
 
 TF-IDF provides a fast and interpretable representation for traditional machine learning text classification.
 
-Why compare multiple models?
+### Why compare multiple models?
 
 Model comparison allows the system to select a classifier using measured performance rather than relying on a single algorithm.
 
-Why PostgreSQL?
+### Why PostgreSQL?
 
 PostgreSQL provides reliable structured storage and supports efficient querying of articles, topics, sentiment, and similarity relationships.
 
-Why FastAPI?
+### Why FastAPI?
 
 FastAPI provides a lightweight API layer with automatic OpenAPI/Swagger documentation and strong Python integration.
 
-Why a separate frontend?
+### Why a separate frontend?
 
 Separating the frontend from the ML and database layers keeps the application modular and easier to maintain.
 
-Project Results
+---
+
+## Project Results
 
 The completed system supports:
 
-4-category news classification
-
-sentiment analysis
-
-10-topic NMF topic modeling
-
-trending topic analysis
-
-article similarity analysis
-
-duplicate detection
-
-PostgreSQL persistence
-
-REST API access
-
-interactive dashboard
-
-real-time article prediction through the trained ML pipeline
+- 4-category news classification
+- sentiment analysis
+- 10-topic NMF topic modeling
+- trending topic analysis
+- article similarity analysis
+- duplicate detection
+- PostgreSQL persistence
+- REST API access
+- interactive dashboard
+- real-time article prediction through the trained ML pipeline
 
 Actual model metrics are generated automatically and stored under:
 
+```text
 models/model_comparison.csv
 models/evaluation/
+```
 
 This keeps the README accurate without hard-coding unverified performance numbers.
 
-Future Improvements
+---
+
+## Future Improvements
 
 Planned improvements include:
 
-Live news API ingestion
+- Live news API ingestion
+- Scheduled news collection
+- Real-time trend monitoring
+- Named Entity Recognition
+- AI-powered article summarization
+- LLM integration
+- News credibility scoring
+- Event detection
+- Semantic search
+- Vector database integration
+- Personalized news recommendations
+- User authentication
+- Real-time dashboard updates
+- Docker containerization
+- Cloud deployment
+- CI/CD pipeline
+- Automated model retraining
 
-Scheduled news collection
+---
 
-Real-time trend monitoring
-
-Named Entity Recognition
-
-AI-powered article summarization
-
-LLM integration
-
-News credibility scoring
-
-Event detection
-
-Semantic search
-
-Vector database integration
-
-Personalized news recommendations
-
-User authentication
-
-Real-time dashboard updates
-
-Docker containerization
-
-Cloud deployment
-
-CI/CD pipeline
-
-Automated model retraining
-
-Skills Demonstrated
+## Skills Demonstrated
 
 This project demonstrates practical experience in:
 
-Python
+- Python
+- Data Science
+- Machine Learning
+- Natural Language Processing
+- Text Classification
+- Feature Engineering
+- Topic Modeling
+- Sentiment Analysis
+- Similarity Analysis
+- SQL
+- PostgreSQL
+- REST API Development
+- FastAPI
+- Data Visualization
+- Frontend Development
+- Git
+- GitHub
+- Software Project Architecture
 
-Data Science
+---
 
-Machine Learning
+## Author
 
-Natural Language Processing
+**Aakanksha Pansare**
 
-Text Classification
-
-Feature Engineering
-
-Topic Modeling
-
-Sentiment Analysis
-
-Similarity Analysis
-
-SQL
-
-PostgreSQL
-
-REST API Development
-
-FastAPI
-
-Data Visualization
-
-Frontend Development
-
-Git
-
-GitHub
-
-Software Project Architecture
-
-Author
-
-Aakanksha Pansare
-
-BSc Data Science & Big Data Analysis
+BSc Data Science & Big Data Analysis  
 MIT World Peace University, Pune
 
-GitHub:
+GitHub:  
 https://github.com/aakankshapansare10
 
-License
+---
+
+## License
 
 This project is developed for educational, portfolio, and demonstration purposes.
