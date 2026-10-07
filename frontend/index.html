@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NewsPulse AI | News Intelligence</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==============================
+         SIDEBAR
+    =============================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                N
+            </div>
+
+            <div>
+                <h2>NewsPulse</h2>
+                <span>AI Intelligence</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="#dashboard" class="nav-item active">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a href="#news" class="nav-item">
+                <span>◈</span>
+                News Feed
+            </a>
+
+            <a href="#trending" class="nav-item">
+                <span>↗</span>
+                Trending
+            </a>
+
+            <a href="#analyzer" class="nav-item">
+                <span>✦</span>
+                AI Analyzer
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="status-dot"></div>
+
+            <div>
+
+                <strong>System Online</strong>
+
+                <small>
+                    AI services operational
+                </small>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ==============================
+         MAIN CONTENT
+    =============================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="eyebrow">
+                    AI-POWERED NEWS INTELLIGENCE
+                </p>
+
+                <h1>
+                    NewsPulse AI
+                </h1>
+
+                <p class="subtitle">
+                    Understand what's happening across the news landscape.
+                </p>
+
+            </div>
+
+
+            <div class="header-status">
+
+                <span class="pulse"></span>
+
+                Live Intelligence
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==============================
+             DASHBOARD
+        =============================== -->
+
+        <section id="dashboard">
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◉
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Articles
+                        </span>
+
+                        <h2 id="totalArticles">
+                            —
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◈
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Categories
+                        </span>
+
+                        <h2 id="totalCategories">
+                            —
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✦
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Topics Detected
+                        </span>
+
+                        <h2 id="totalTopics">
+                            —
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⚡
+                    </div>
+
+                    <div>
+
+                        <span>
+                            AI Status
+                        </span>
+
+                        <h2 class="online">
+                            ONLINE
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- CHARTS -->
+
+            <div class="charts-grid">
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <p class="panel-label">
+                                NEWS DISTRIBUTION
+                            </p>
+
+                            <h3>
+                                Categories
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <canvas
+                            id="categoryChart">
+                        </canvas>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <p class="panel-label">
+                                AUDIENCE SIGNAL
+                            </p>
+
+                            <h3>
+                                Sentiment
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <canvas
+                            id="sentimentChart">
+                        </canvas>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             TRENDING TOPICS
+        =============================== -->
+
+        <section
+            id="trending"
+            class="section"
+        >
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="panel-label">
+                        WHAT'S HOT
+                    </p>
+
+                    <h2>
+                        Trending Topics
+                    </h2>
+
+                </div>
+
+
+                <span class="live-badge">
+                    LIVE
+                </span>
+
+            </div>
+
+
+
+            <div
+                id="trendingContainer"
+                class="trending-grid"
+            >
+
+                <div class="loading">
+                    Loading trending topics...
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==============================
+             NEWS FEED
+        =============================== -->
+
+        <section
+            id="news"
+            class="section"
+        >
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="panel-label">
+                        LATEST INTELLIGENCE
+                    </p>
+
+                    <h2>
+                        News Feed
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="refresh-btn"
+                    onclick="loadArticles()"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+
+            <div
+                id="newsContainer"
+                class="news-grid"
+            >
+
+                <div class="loading">
+                    Loading news...
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==============================
+             AI ANALYZER
+        =============================== -->
+
+        <section
+            id="analyzer"
+            class="section"
+        >
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="panel-label">
+                        MACHINE INTELLIGENCE
+                    </p>
+
+                    <h2>
+                        AI News Analyzer
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="analyzer-panel">
+
+
+                <div class="analyzer-intro">
+
+                    <div class="ai-symbol">
+                        ✦
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Analyze Any News Article
+                        </h3>
+
+                        <p>
+                            Enter a headline or article and let
+                            NewsPulse AI classify the story and
+                            analyze its sentiment.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <textarea
+                    id="articleInput"
+                    placeholder="Paste a news article or headline here..."
+                ></textarea>
+
+
+
+                <button
+                    class="analyze-btn"
+                    onclick="analyzeArticle()"
+                >
+                    ✦ Analyze with AI
+                </button>
+
+
+
+                <div
+                    id="predictionResult"
+                    class="prediction-result"
+                >
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==============================
+             FOOTER
+        =============================== -->
+
+        <footer>
+
+            <div>
+
+                <strong>
+                    NewsPulse AI
+                </strong>
+
+                <span>
+                    News Intelligence Platform
+                </span>
+
+            </div>
+
+
+            <span>
+                Built with Python · FastAPI · PostgreSQL · Machine Learning
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="/static/app.js"></script>
+
+
+</body>
+
+</html>
